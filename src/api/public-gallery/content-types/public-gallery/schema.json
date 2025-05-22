@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "public_galleries",
+  "info": {
+    "singularName": "public-gallery",
+    "pluralName": "public-galleries",
+    "displayName": "Gallery",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "galleryName": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "galleryName"
+    },
+    "mainImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "rooms": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::room.room",
+      "mappedBy": "gallery"
+    }
+  }
+}
