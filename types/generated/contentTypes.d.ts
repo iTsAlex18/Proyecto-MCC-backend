@@ -543,6 +543,36 @@ export interface ApiRoomRoom extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiSectionClickSectionClick
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'section_clicks';
+  info: {
+    displayName: 'section-click';
+    pluralName: 'section-clicks';
+    singularName: 'section-click';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    clicks: Schema.Attribute.Integer;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::section-click.section-click'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    section: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -1058,6 +1088,7 @@ declare module '@strapi/strapi' {
       'api::post.post': ApiPostPost;
       'api::public-gallery.public-gallery': ApiPublicGalleryPublicGallery;
       'api::room.room': ApiRoomRoom;
+      'api::section-click.section-click': ApiSectionClickSectionClick;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

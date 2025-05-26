@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "section_clicks",
+  "info": {
+    "singularName": "section-click",
+    "pluralName": "section-clicks",
+    "displayName": "section-click"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "section": {
+      "type": "string"
+    },
+    "clicks": {
+      "type": "integer"
+    }
+  }
+}
