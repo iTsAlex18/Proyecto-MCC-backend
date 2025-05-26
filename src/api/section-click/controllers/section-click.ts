@@ -2,13 +2,16 @@
  * section-click controller
  */
 
+/**
+ * section-click controller
+ */
+
 import { factories } from '@strapi/strapi';
 
 export default factories.createCoreController('api::section-click.section-click', ({ strapi }) => ({
   async register(ctx) {
     const { section } = ctx.request.body;
 
-    // Buscar si ya existe un registro para esta sección
     const existing = await strapi.entityService.findMany("api::section-click.section-click", {
       filters: { section },
     });
@@ -26,5 +29,33 @@ export default factories.createCoreController('api::section-click.section-click'
       ctx.send({ status: 'created', section: created.section, clicks: 1 });
     }
   },
+
+  async resumen(ctx) {
+    try {
+      const data = await strapi.entityService.findMany('api::section-click.section-click', {
+        fields: ['section', 'clicks'],
+        sort: { clicks: 'desc' },
+        limit: 100
+      });
+
+      ctx.send(data);
+    } catch (err) {
+      ctx.throw(500, 'Error obteniendo resumen de clics');
+    }
+  },
+
+  async top5(ctx) {
+    try {
+      const data = await strapi.entityService.findMany('api::section-click.section-click', {
+        fields: ['section', 'clicks'],
+        sort: { clicks: 'desc' },
+        limit: 5
+      });
+
+      ctx.send(data);
+    } catch (err) {
+      ctx.throw(500, 'Error obteniendo Top 5');
+    }
+  }
 }));
 
