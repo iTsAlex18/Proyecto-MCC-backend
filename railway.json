@@ -1,7 +1,21 @@
 {
   "build": {
     "builder": "NIXPACKS",
-    "buildCommand": "npm install && npm run build",
-    "startCommand": "npm run start"
+    "nixpacksPlan": {
+      "phases": {
+        "setup": {
+          "nixPkgs": ["nodejs", "npm"]
+        },
+        "install": {
+          "cmds": ["npm install"]
+        },
+        "build": {
+          "cmds": ["npm run build"]
+        },
+        "start": {
+          "cmd": "npm run start"
+        }
+      }
+    }
   }
 }
