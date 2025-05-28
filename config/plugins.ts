@@ -4,4 +4,6 @@ export default ({ env }) => ({
       jwtSecret: env('JWT_SECRET'),
     },
   },
+
+  // Plugin eliminado correctamente
 });
