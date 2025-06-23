@@ -9,7 +9,7 @@ console.log('🔐 Clave API desde env:', key?.slice(0, 10)); // Muestra primeros
 export async function enviarCorreo(to: string, subject: string, body: string, postId: number) {
   const msg = {
     to,
-    from: 'notificaciones@museo.com', // Este correo debe estar verificado en SendGrid si usas plan gratuito
+    from: 'notificacionesmuseocananea@gmail.com', // Este correo debe estar verificado en SendGrid si usas plan gratuito
     subject,
     html: `
       <h2>${subject}</h2>
